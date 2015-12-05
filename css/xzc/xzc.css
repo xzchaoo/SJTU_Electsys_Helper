@@ -1,0 +1,103 @@
+.xzc-dropdown .anchor{
+	top:0;
+	left:100%;
+	margin-left:-40px;
+	position:relative;
+	margin-top:1px;
+	margin-bottom:1px;
+}
+.xzc-dropdown {
+	color:#000000;
+}
+.anchor {
+	position:absolute;
+	
+	width:20px;
+	height:20px;
+
+	top:100%;
+	left:50%;
+	margin-left:-20px;
+
+	border-left: 20px solid rgba(0, 0, 0, 0);
+	border-right: 20px solid rgba(0, 0, 0, 0);
+	border-top:20px solid #9B59B6;
+	
+	display:none;
+	z-index:2;
+}
+
+.totop{
+	position:fixed;
+	right:0;
+	bottom:0;
+	-o-transition-duration: 1s;
+	-moz-transition-duration: 1s;
+	-webkit-transition: -webkit-transform 1s;
+	background-color:rgba(155, 89, 182, 0.7);
+	cursor: pointer;
+	
+	z-index: 10;
+	opacity: 0.5;
+
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-o-border-radius: 50%;
+	-moz-border-radius: 50%;
+	
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+
+	text-align:center;
+
+	height: 40px;
+	width:  40px;
+}
+.totop:hover{
+	opacity: 1;
+
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+}
+.totop i{
+	position:relative;
+	font-size:20px;
+	top:10px;
+}
+
+
+
+
+/* xzc-tab-panel begin */
+.xzc-tag-panel{
+}
+.xzc-tag-panel > .xzc-tag-title{
+	display: block;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 30px;
+	font-weight: 500;
+	height: 72.7272720336914px;
+	line-height:72px;
+}
+.xzc-tag-panel > ul > li{
+	float:left;
+	/*这个圆角要看一下加在li上还是a上*/
+	border-radius:4px;
+	
+	/*background-color:#9B59B6;*/
+	margin-left:5px;
+	margin-top:5px;
+}
+.xzc-tag-panel > ul > li > a {
+	padding:5px 10px;
+	display:inline-block;
+	color:inherit;
+	/*color:#ffffff;*/
+}
+/* xzc-tab-panel end */

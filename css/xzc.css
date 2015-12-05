@@ -1,0 +1,43 @@
+/*
+	用于totpo按钮
+	先用padding挤出一些空间 填充成ed4934色(类似红色)
+	字体改成白色(fa的颜色)
+*/
+.totop > a{
+	padding:10px;
+	background-color:#ed4934;
+	color:#ffffff;
+}
+/*
+	固定在右下角
+	bottom要微调一下,因为设置为0的话,好像会有一部分陷下去
+*/
+.totop{
+	position:fixed;
+	right:0px;
+	bottom:8px;
+}
+
+
+
+
+/*淘宝色的按钮*/
+.btn-taobao{
+	color: #fff;
+	background-color: #f40;
+	border-color: #CC3300;
+}
+.btn-taobao:hover,
+.btn-taobao.hover,
+.btn-taobao:focus,
+.btn-taobao.focus,
+.btn-taobao:active,
+.btn-tobao.active{
+	color: #fff;
+	background-color: #E63900;
+	border-color: #CC3300;
+}
+/*不要圆角*/
+.nor{
+	border-radius:0 !important;
+}

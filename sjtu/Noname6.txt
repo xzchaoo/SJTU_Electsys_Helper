@@ -1,0 +1,124 @@
+        /*var cs=xy_course_map[cname];
+        var xyid=xy_map[cname];
+
+        var $table=$('<table class="table table-striped">').appendTo($('#content'));
+        $('<caption>').text(cname).appendTo($table);
+
+        return $.w(function(delay,def){
+            for(var ii in cs){
+                def=def.then(delay(100,cs[ii]));
+            }
+            return def.promise();
+        },function(def,c){
+            var $tr=$('<tr>').appendTo($table);
+            $('<a>').attr('href',view_detail2_url+c.bsid).attr('target','blank').text(c.bsid).appendTo($('<td>').css('width','50px').appendTo($tr));
+            $('<a>').attr('href',view_course_url+c.cid).attr('target','blank').text(c.cname).appendTo($('<td>').css('width','150px').appendTo($tr));
+            $('<td>').html(c.js+'<br/>'+c.zc).appendTo($tr).css('width','100px');
+            var rs=$('<td>').text('-').appendTo($tr).css('width','100px');
+            get_detail2(c.bsid).then(function(r){
+                rs.text(r.cur+'--'+r.max);
+            });
+            $('<td>').text(c.zmp).appendTo($tr).css('width','200px');
+            $('<td>').text(c.bz).appendTo($tr);
+        });*/
+
+
+
+//javascript:void(function(){var s=document.createElement("script");s.src="http://127.0.0.1/js/sjtu.js?r"+Math.random();document.head.appendChild(s);}())
+
+//加载任选课
+/*
+function load_renxuanke(){
+    $.when(function(){
+        var def=$.Deferred();
+        $('<div>').load(rxk_url,function(){
+            def.resolve($(this));
+        });
+        return def.promise();
+    }()).then(function($d){
+
+        $.w(function(delay,def){
+            for(var i in xyid_list){
+                def=def.then(delay(1000,xyid_list[i]));
+            }
+            return def.promise();
+        },function(def,xy_id){
+            var nj=2014;
+            $.when(getCourseList_rxk($d,xy_id,nj)).then(function($d,courseList){
+                var $table=$('<table class="table table-striped">').appendTo($('#content'));
+                $('<caption>').text(xy_map[xy_id]).appendTo($table);
+                $.w(function(delay,def){
+                    for(var i in courseList){
+                        def=def.then(delay(2000,courseList[i]));
+                    }
+                    return def.promise();
+                },function(def,c){
+                    var params=getParams($d,'00',{
+                        OutSpeltyEP1$dpNj:nj,
+                        OutSpeltyEP1$dpYx:xy_id,
+                        OutSpeltyEP1$lessonArrange:'课程安排',
+                        myradiogroup:_.str.trim(c.cid)
+                    });
+                    var $d2=$('<div>').load(rxk_url,params);
+                    var $tr=$('<tr>').appendTo($table);
+                    $('<td>').text(c.cid).appendTo($tr);
+                    var td=$('<td>').appendTo($tr);
+                    var ret=get_arrange_list($d2,{
+                        xyid:xy_id,
+                        cid:cid,
+                        cname:c.name
+                    });
+                    if(ret.length){
+                        var text="";
+                        for(var i in ret)
+                            text+=$.templates('{xyid:"{{:xyid}}",cid:"{{:cid}}",cname:"{{:cname}}",bsid:"{{:bsid}}",js:"{{:js}}",zc:"{{:zc}}",xs:"{{:xs}}",jhrs:"{{:jhrs}}",sdrs:"{{:sdrs}}",zmp:"{{:zmp}}",bz:"{{:bz}}"},').render(ret[i]);
+                        td.text('['+text+']');
+                    }else{
+                        $tr.remove();
+                    }
+                }).then(function(){
+                    if($table.find('tr').length==0){
+                        $table.remove();
+                    }
+                    def.resolve();
+                });
+            });
+            return def.promise();
+        });
+    });
+}
+
+*/
+
+/*
+	http://electsys.sjtu.edu.cn/edu/student/elect/speltyCommonCourse.aspx
+	这里的bsid跟cid是一样的
+	获得在这个页面的课程列表
+	需要同步执行
+*/
+function getCourseList_rxk($d,xyid,nj){
+    var def=$.def();
+
+    var params=getParams($d,'',{
+        OutSpeltyEP1$btnQuery:'查 询',
+        OutSpeltyEP1$dpNj:nj,
+        OutSpeltyEP1$dpYx:xyid
+    });
+
+    var d2=$('<div>').load(rxk_url,params);
+    var ret=[];
+    var $table=d2.find('#OutSpeltyEP1_gridMain tr:gt(0)').each(function(){
+        var tds=$(this).find('td');
+        var c={
+            bsid:tds.eq(0).find('input').val(),
+            name:tds.eq(1).text(),
+            cid:tds.eq(2).text(),
+            xf:tds.eq(4).text(),
+            xs:tds.eq(5).text(),
+        };
+        ret.push(c);
+    });
+    def.resolve(d2,ret);
+    return def.promise();
+}
+

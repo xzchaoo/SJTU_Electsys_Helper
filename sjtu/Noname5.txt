@@ -1,0 +1,121 @@
+
+function doLoadtest1(type,cid_list,$table){
+	var ii=0;
+	setTimeout(function ceshi1(){
+		if(ii>=cid_list.length)
+			return;
+		var cid=cid_list[ii];
+		var d=$('<div>').data('cid',cid).load(tsk_url,function(){
+		var $this=$(this);
+			var params=getParams($this,type,{
+				myradiogroup:$this.data('cid'),
+				lessonArrange:'课程安排'
+			});
+			function ceshi2(){
+				var d2=$('<div>').data('cid',$this.data('cid')).load(tsk_url,params,function(){
+					var $this=$(this);
+					var cid=$this.data('cid');
+					$this.find('#LessonTime1_gridMain tr:gt(0)').each(function(){
+						var $this=$(this);
+						var $tr=$('<tr>').appendTo($table);
+						var $tds=$this.find('td');
+						var bsid=$tds.eq(0).find('input').val();
+						var jiaoshi=$tds.eq(1).text();
+						var zhicheng=$tds.eq(2).text();
+						var max=$tds.eq(5).text();
+						var cur=$tds.eq(7).text();
+						var detail=$tds.eq(9).text();
+						$('<td>').html('<a href="'+bsid_url+bsid+'" target="blank">'+bsid+'</a>').appendTo($tr);
+						$('<td>').html('<a href="'+kcxx_url+cid+'" target="blank">'+cid+'</a>').appendTo($tr);
+						//var d3=$('<div>').load(bsid_url+bsid);
+						//var name=d3.find('#LessonArrangeDetail1_dataListKc td:eq(2)').text().split('：')[1];
+						var name=cid_name[cid];
+						$('<td>').text(name).appendTo($tr);
+						$('<td>').text(jiaoshi).appendTo($tr);
+						$('<td>').text(zhicheng).appendTo($tr);
+						$('<td>').text(cur).appendTo($tr);
+						$('<td>').text(max).appendTo($tr);
+						$('<td>').text(detail).appendTo($tr);
+					});
+				});
+			}
+			ceshi2();
+		});
+		++ii;
+		setTimeout(ceshi1,2000);
+	},2000);
+}
+
+
+function doLoadtest1(type,cid_list,$table){
+	var ii=0;
+	$.ajaxSetup({
+		async:false
+	});
+	setTimeout(function ceshi1(){
+		if(ii>=cid_list.length)
+			return;
+		var cid=cid_list[ii];
+		var d=$('<div>').data('cid',cid).load(tsk_url,function(){
+		var $this=$(this);
+			var obj={
+				__EVENTTARGET:'',
+				__EVENTARGUMENT:'',
+				__LASTFOCUS:'',
+				__VIEWSTATE:$this.find('#__VIEWSTATE').val(),
+				__VIEWSTATEGENERATOR:$this.find('#__VIEWSTATEGENERATOR').val(),
+				__EVENTVALIDATION:$this.find('#__EVENTVALIDATION').val(),
+				myradiogroup:$this.data('cid'),
+				lessonArrange:'课程安排'
+			};
+			obj['gridGModule$ctl'+type+'$radioButton']='radioButton';
+			function ceshi2(){
+				var d2=$('<div>').data('cid',$this.data('cid')).load(tsk_url,obj,function(){
+					var $this=$(this);
+					var cid=$this.data('cid');
+					$this.find('#LessonTime1_gridMain tr:gt(0)').each(function(){
+						var $this=$(this);
+						var $tr=$('<tr>').appendTo($table);
+						var $tds=$this.find('td');
+						var bsid=$tds.eq(0).find('input').val();
+						var jiaoshi=$tds.eq(1).text();
+						var zhicheng=$tds.eq(2).text();
+						var max=$tds.eq(5).text();
+						var cur=$tds.eq(7).text();
+						var detail=$tds.eq(9).text();
+						$('<td>').text(cid_name[cid]).appendTo($table);
+						var obj={
+							bsid:$tds.find('input').first().val(),
+							js:_.str.trim($tds.eq(1).text()),
+							zc:_.str.trim($tds.eq(2).text()),
+							xs:_.str.trim($tds.eq(4).text()),
+							jhrs:_.str.trim($tds.eq(5).text()),
+							sdrs:_.str.trim($tds.eq(6).text()),
+							zmp:_.str.trim($tds.eq(9).text()),
+							bz:_.str.trim($tds.eq(10).text()),
+							xyid:xy_id,
+							cid:c.cid,
+							cname:c.name
+						};
+						text+=$.templates('{xyid:"{{:xyid}}",cid:"{{:cid}}",cname:"{{:cname}}",bsid:"{{:bsid}}",js:"{{:js}}",zc:{{:zc}},xs:"{{:xs}}",jhrs:"{{:jhrs}}",sdrs:"{{:sdrs}}",zmp:"{{:zmp}}",bz:"{{:bz}}"},').render(obj);
+						td.text('['+text+']');
+						//$('<td>').html('<a href="'+bsid_url+bsid+'" target="blank">'+bsid+'</a>').appendTo($tr);
+						//$('<td>').html('<a href="'+kcxx_url+cid+'" target="blank">'+cid+'</a>').appendTo($tr);
+						//var d3=$('<div>').load(bsid_url+bsid);
+						//var name=d3.find('#LessonArrangeDetail1_dataListKc td:eq(2)').text().split('：')[1];
+						/*var name=cid_name[cid];
+						$('<td>').text(name).appendTo($tr);
+						$('<td>').text(jiaoshi).appendTo($tr);
+						$('<td>').text(zhicheng).appendTo($tr);
+						$('<td>').text(cur).appendTo($tr);
+						$('<td>').text(max).appendTo($tr);
+						$('<td>').text(detail).appendTo($tr);*/
+					});
+				});
+			}
+			ceshi2();
+		});
+		++ii;
+		setTimeout(ceshi1,2000);
+	},2000);
+}

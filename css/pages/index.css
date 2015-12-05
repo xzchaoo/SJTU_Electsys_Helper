@@ -1,0 +1,21 @@
+ul.pagination.pager li:first-child > a,
+ul.pagination.pager li:last-child > a{
+	border-radius: 15px;
+}
+.list-item{
+	margin-top:10px;
+	height:70px;
+	min-height:100%;
+	max-height:100%;
+}
+.list-item > div{
+	height:100%;
+	min-height:100%;
+	max-height:100%;
+}
+.list-item a {
+	color:#000;
+}
+.list-item a:hover {
+	color:#F40;
+}

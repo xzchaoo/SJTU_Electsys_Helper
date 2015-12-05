@@ -1,0 +1,4 @@
+ul.pagination.pager li:first-child > a,
+ul.pagination.pager li:last-child > a{
+	border-radius: 5px 14px;
+}

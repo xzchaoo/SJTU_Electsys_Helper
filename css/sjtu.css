@@ -1,0 +1,23 @@
+.x-kebiao-row{
+	margin-top:10px;
+}
+
+.footer{
+padding: 30px 0px;
+background: #303030;
+color: #cacaca;
+border-top: 1px solid #444;
+border-bottom: 1px solid #444;
+margin-top:40px;
+/*	padding-top:20px;
+	background-color:#996699;
+	padding-bottom:20px;
+	color:#fff;*/
+}
+.footer2{
+	padding-top:15px;
+	background-color:#3a3a3a;
+	padding-bottom:15px;
+	color:#999;
+	border-bottom: 5px solid #000;
+}
