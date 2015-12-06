@@ -1,0 +1,11 @@
+<!-- 列出所有的类型 比如人文通选课 -->
+
+<div class="panel panel-default" style="max-height:600px;overflow:scroll;">
+	<div class="panel-body">
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="xy in xyList" ng-class="{active:selectIndex==$index}" ng-click="onTypeSelect($index,xy)">
+				{{xy.name}}
+			</li>
+		</ul>
+	</div>
+</div>
